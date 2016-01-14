@@ -12,8 +12,8 @@ import java.util.ArrayList;
  */
 public class Vertex {
 
-    private ArrayList<Edge> neighborhood;
-    private String label;
+    protected ArrayList<Edge> neighborhood;
+    protected String label;
     
     /**
      * 
@@ -114,7 +114,7 @@ public class Vertex {
     /**
      * 
      * @param other The object to compare
-     * @return true iff other instanceof Vertex and the two Vertex objects have the same label
+     * @return true if other instanceof Vertex and the two Vertex objects have the same label
      */
     public boolean equals(Object other){
         if(!(other instanceof Vertex)){
