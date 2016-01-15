@@ -25,7 +25,22 @@ public class Vertex {
     }
     
     
-    /**
+    public ArrayList<Edge> getNeighborhood() {
+		return neighborhood;
+	}
+
+
+	public void setNeighborhood(ArrayList<Edge> neighborhood) {
+		this.neighborhood = neighborhood;
+	}
+
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+
+	/**
      * This method adds an Edge to the incidence neighborhood of this graph iff
      * the edge is not already present. 
      * 

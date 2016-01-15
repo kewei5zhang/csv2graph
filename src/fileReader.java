@@ -4,10 +4,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
 public class fileReader {
 	
-	 Vertex point = new Intersection(null); 
+	 Intersection point = new Intersection(null); 
      ArrayList collection = new ArrayList<Intersection>();
     
 /**
@@ -15,27 +14,33 @@ public class fileReader {
  * @param fileName This is the string filename
  */
      public void readNodeCsv(String fileName) {
-
-     // The name of the file to open.
-
+    	 
      // This will reference one line at a time
+     String myLat = null;
+     String myLng = null;
      String line = null;
+     String myLabel = null;
+     
      try {
          // FileReader reads text files in the default encoding.
-         FileReader fileReader = 
-             new FileReader(fileName);
+         FileReader fileReader = new FileReader(fileName);
 
          // Always wrap FileReader in BufferedReader.
-         BufferedReader bufferedReader = 
-             new BufferedReader(fileReader);
+         BufferedReader bufferedReader = new BufferedReader(fileReader);
 
          while((line = bufferedReader.readLine()) != null) {
          	String[] parts = line.split("\t");
          	String part1 = parts[0];
-         	String part2 = parts[1];
-         	String part3 = parts[2];
+         	myLat = parts[1];
+         	myLng = parts[2];
          	
-         	point.
+         	point.setLongitude(myLat);
+         	point.setLatitude(myLng);
+         	point.label = myLat + myLng;
+         	
+         	myLabel = point.getLabel();
+         	System.out.println(point);
+         	System.out.println(myLabel);
          	}   
          
          // Always close files.
