@@ -17,10 +17,11 @@
  */
 public class Edge implements Comparable<Edge> {
 
-    private Vertex one, two;
-    private int weight;
+    protected Vertex one, two;
+    protected int weight;
+  
     
-    /**
+	/**
      * 
      * @param one The first vertex in the Edge
      * @param two The second vertex in the Edge
@@ -88,7 +89,7 @@ public class Edge implements Comparable<Edge> {
     public void setWeight(int weight){
         this.weight = weight;
     }
-    
+
     
     /**
      * Note that the compareTo() method deviates from 

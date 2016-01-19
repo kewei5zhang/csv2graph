@@ -14,8 +14,8 @@ import java.util.*;
  */
 public class Graph {
     
-    private HashMap<String, Vertex> vertices;
-    private HashMap<Integer, Edge> edges;
+    protected HashMap<String, Vertex> vertices;
+    protected HashMap<Integer, Edge> edges;
     
     public Graph(){
         this.vertices = new HashMap<String, Vertex>();
@@ -84,7 +84,7 @@ public class Graph {
         two.addNeighbor(e);
         return true;
     }
-    
+   
     /**
      * 
      * @param e The Edge to look up
