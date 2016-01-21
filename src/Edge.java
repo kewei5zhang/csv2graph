@@ -18,7 +18,7 @@
 public class Edge implements Comparable<Edge> {
 
     protected Vertex one, two;
-    protected int weight;
+    protected double weight;
   
     
 	/**
@@ -36,7 +36,7 @@ public class Edge implements Comparable<Edge> {
      * @param two The second vertex of the Edge
      * @param weight The weight of this Edge
      */
-    public Edge(Vertex one, Vertex two, int weight){
+    public Edge(Vertex one, Vertex two, double weight){
         this.one = (one.getLabel().compareTo(two.getLabel()) <= 0) ? one : two;
         this.two = (this.one == one) ? two : one;
         this.weight = weight;
@@ -77,7 +77,7 @@ public class Edge implements Comparable<Edge> {
      * 
      * @return int The weight of this Edge
      */
-    public int getWeight(){
+    public double getWeight(){
         return this.weight;
     }
     
@@ -86,7 +86,7 @@ public class Edge implements Comparable<Edge> {
      * 
      * @param weight The new weight of this Edge
      */
-    public void setWeight(int weight){
+    public void setWeight(double weight){
         this.weight = weight;
     }
 
@@ -102,7 +102,7 @@ public class Edge implements Comparable<Edge> {
      * @return int this.weight - other.weight
      */
     public int compareTo(Edge other){
-        return this.weight - other.weight;
+        return (int) (this.weight - other.weight);
     }
     
     /**

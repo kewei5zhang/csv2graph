@@ -1,10 +1,12 @@
-import java.util.*;
 
 public class Intersection extends Vertex {
 	private int number;
 	private String longitude;
 	private String latitude;
-	
+
+	public Intersection(String label) {
+		super(label);
+	}
 	
 	public int getNumber() {
 		return number;
@@ -12,11 +14,6 @@ public class Intersection extends Vertex {
 
 	public void setNumber(int number) {
 		this.number = number;
-	}
-
-	public Intersection(String label) {
-		super(label);
-		//label = this.longitude + this.latitude;
 	}
 	
 	public void setLongitude(String lng){
@@ -30,8 +27,9 @@ public class Intersection extends Vertex {
 	public void setLatitude(String lat){
 		this.latitude = lat;
 	}
-	
+
 	public String getLatitude(){
 		return this.latitude;
 	}
+
 }

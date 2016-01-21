@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Vertex {
 
-    protected ArrayList<Edge> neighborhood;
+    private ArrayList<Edge> neighborhood;
     protected String label;
     
     /**
@@ -72,7 +72,6 @@ public class Vertex {
     public Edge getNeighbor(int index){
         return this.neighborhood.get(index);
     }
-    
     
     /**
      * 

@@ -63,7 +63,7 @@ public class Graph {
      * @param weight The weight of the Edge
      * @return true iff no Edge already exists in the Graph
      */
-    public boolean addEdge(Vertex one, Vertex two, int weight){
+    public boolean addEdge(Vertex one, Vertex two, double weight){
         if(one.equals(two)){
             return false;   
         }

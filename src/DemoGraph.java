@@ -1,13 +1,12 @@
-import java.io.*;
 import java.util.*;
-
-import javax.security.auth.kerberos.KerberosKey;
 
 public class DemoGraph {
     public static void main(String[] args){
-    	Network network = new Network();
+    	Graph network = new Graph();
+    	
     	ArrayList<Intersection> oldBeijingIntersections = null;
-    	ArrayList<ArrayList<Integer>> oldBeijingStardEndPoints = null;
+    	ArrayList<ArrayList<String>> oldBeijingRoadInfo = null;
+    	
     	ArrayList<Integer> pointsPair = new ArrayList<>();
         sampleFile sampleFile = new sampleFile();
         fileReader CsvFileReader = new fileReader();
@@ -15,29 +14,28 @@ public class DemoGraph {
         sampleFile.sampleCsvFile("beijingNode.txt", 2000, "sampleBeijingNode.txt");
         sampleFile.sampleCsvFile("beijingRoad.txt", 100, "sampleBeijingRoad.txt");
         
-        CsvFileReader.readNodeCsv("sampleBeijingNode.txt");
-        CsvFileReader.readRoadCsv("sampleBeijingRoad.txt");
+        CsvFileReader.readNodeCsv("beijingNode.txt");
+        CsvFileReader.readRoadCsv("beijingRoad.txt");
         oldBeijingIntersections =CsvFileReader.nodeCollection;
-        oldBeijingStardEndPoints = CsvFileReader.startEndPoints;
-      //  System.out.print(CsvFileReader.collection);
- 
+        oldBeijingRoadInfo = CsvFileReader.roadInfo;
+
         //read all nodes in the text file and add those into the network as an intersection
         for( int i = 0; i <= oldBeijingIntersections.size() - 1; i++){
         	network.addVertex(oldBeijingIntersections.get(i), true);
-        	//System.out.println(oldBeijingIntersections.get(i));
         }
         
-//        System.out.println("startEndPoints pairs are " + CsvFileReader.startEndPoints);
-//        System.out.println("nodeCollection is " + CsvFileReader.nodeCollection);
-//        System.out.println("roadCollection is " + CsvFileReader.roadCollection);
-        
-        for(int i = 0; i <= oldBeijingStardEndPoints.size()-1; i++){
+        // add road in network
+        for(int i = 0; i <= oldBeijingRoadInfo.size()-1; i++){
         	for(int j = 0; j <= 1;j++){       		
-        		int k = oldBeijingStardEndPoints.get(i).get(j);
+        		int k = Integer.parseInt(oldBeijingRoadInfo.get(i).get(j)) ;
         		pointsPair.add(k);
         	}
-        	network.addEdge(oldBeijingIntersections.get(pointsPair.get(0)), oldBeijingIntersections.get(pointsPair.get(1)));
-        //	System.out.println(pointsPair);
+        	
+        	Intersection one =oldBeijingIntersections.get(pointsPair.get(0));
+        	Intersection two = oldBeijingIntersections.get(pointsPair.get(1));
+        	Double length = Double.parseDouble(oldBeijingRoadInfo.get(i).get(2));
+        	
+        	network.addEdge(one, two, length);
         	pointsPair.clear();
         }
         
@@ -45,9 +43,8 @@ public class DemoGraph {
         	System.out.println(oldBeijingIntersections.get(i));
         	
         	for(int j = 0; j< oldBeijingIntersections.get(i).getNeighborCount(); j++)
-        		System.out.println(oldBeijingIntersections.get(i).getNeighbor(j));
-        }
-        
+        		System.out.println(oldBeijingIntersections.get(i).getNeighbor(j));       		
+        }     
         System.out.println();
     }
     
