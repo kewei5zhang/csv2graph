@@ -10,10 +10,13 @@ import java.util.ArrayList;
  * @author Michael Levet
  * @date June 09, 2015
  */
-public class Vertex {
+public class Vertex implements Comparable<Vertex>{
 
     private ArrayList<Edge> neighborhood;
     protected String label;
+    public double minDistance = Double.POSITIVE_INFINITY;
+    public Vertex previous;
+
     
     /**
      * 
@@ -147,6 +150,12 @@ public class Vertex {
     public ArrayList<Edge> getNeighbors(){
         return new ArrayList<Edge>(this.neighborhood);
     }
+
+
+	@Override
+	public int compareTo(Vertex other) {
+		return Double.compare(minDistance, other.minDistance);
+	}
     
 }
 

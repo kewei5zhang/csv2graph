@@ -39,8 +39,8 @@ public class fileReader {
         	Intersection point = new Intersection(null); 
          	String[] parts = line.split("\t");
          	int part1 = Integer.parseInt(parts[0]);
-         	myLat = parts[1];
-         	myLng = parts[2];
+         	myLat = parts[2];
+         	myLng = parts[1];
          	
          	point.setLongitude(myLat);
          	point.setLatitude(myLng);

@@ -18,6 +18,7 @@ public class DemoGraph {
         CsvFileReader.readRoadCsv("beijingRoad.txt");
         oldBeijingIntersections =CsvFileReader.nodeCollection;
         oldBeijingRoadInfo = CsvFileReader.roadInfo;
+        
 
         //read all nodes in the text file and add those into the network as an intersection
         for( int i = 0; i <= oldBeijingIntersections.size() - 1; i++){
@@ -39,13 +40,29 @@ public class DemoGraph {
         	pointsPair.clear();
         }
         
-        for(int i = 0; i <= oldBeijingIntersections.size()-1; i++){
-        	System.out.println(oldBeijingIntersections.get(i));
+//        for(int i = 0; i <= oldBeijingIntersections.size()-1; i++){
+//        	System.out.println(oldBeijingIntersections.get(i));
+//        	
+//        	for(int j = 0; j< oldBeijingIntersections.get(i).getNeighborCount(); j++)
+//        		System.out.println(oldBeijingIntersections.get(i).getNeighbor(j));       		
+//        }     
+//        System.out.println();
+        
+        
+        //compute shortest path
+        DijkstraAlgorithm.computePaths(oldBeijingIntersections.get(0));
+        System.out.println("Distance to " + 5 + " : " + oldBeijingIntersections.get(5).minDistance);
+        List<Vertex> path = DijkstraAlgorithm.getShortestPathTo(oldBeijingIntersections.get(506));
+        System.out.println("Path:" + path);
+        for(int i = 0; i<= path.size()-1;i++){
+        	String latString = null;
+        	String lngString = null;
+        	latString = oldBeijingIntersections.get(Integer.parseInt(path.get(i).getLabel())).getLatitude();
+        	lngString = oldBeijingIntersections.get(Integer.parseInt(path.get(i).getLabel())).getLongitude();
+        	System.out.println(path.get(i) + " : " +latString +" , "+ lngString);
         	
-        	for(int j = 0; j< oldBeijingIntersections.get(i).getNeighborCount(); j++)
-        		System.out.println(oldBeijingIntersections.get(i).getNeighbor(j));       		
-        }     
-        System.out.println();
+        }
+        
     }
     
 }
