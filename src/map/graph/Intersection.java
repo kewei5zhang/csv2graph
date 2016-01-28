@@ -1,3 +1,5 @@
+package map.graph;
+
 
 public class Intersection extends Vertex {
 	private int number;

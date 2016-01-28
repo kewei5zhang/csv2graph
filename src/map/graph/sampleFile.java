@@ -1,3 +1,4 @@
+package map.graph;
 	import java.io.*;
 	/**
 	 * This class is used to sample all resource files. the sample files would be used to test this program

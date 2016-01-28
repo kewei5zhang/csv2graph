@@ -1,8 +1,15 @@
+package map.graph;
 import java.util.*;
 
+/**
+ * This class is used to contain the main method, which build up the graph and on which the dijkstra's algorithm implemented
+ * 
+ * @author s4366844
+ *
+ */
 public class DemoGraph {
     public static void main(String[] args){
-    	Graph network = new Graph();
+    	Graph graph = new Graph();
     	
     	ArrayList<Intersection> oldBeijingIntersections = null;
     	ArrayList<ArrayList<String>> oldBeijingRoadInfo = null;
@@ -22,8 +29,12 @@ public class DemoGraph {
 
         //read all nodes in the text file and add those into the network as an intersection
         for( int i = 0; i <= oldBeijingIntersections.size() - 1; i++){
-        	network.addVertex(oldBeijingIntersections.get(i), true);
+        	graph.addVertex(oldBeijingIntersections.get(i), true);
         }
+        
+        for(int i = 0; i <= oldBeijingRoadInfo.size()-1; i++){
+	    	System.out.println(oldBeijingRoadInfo.get(i));
+	    }
         
         // add road in network
         for(int i = 0; i <= oldBeijingRoadInfo.size()-1; i++){
@@ -36,7 +47,7 @@ public class DemoGraph {
         	Intersection two = oldBeijingIntersections.get(pointsPair.get(1));
         	Double length = Double.parseDouble(oldBeijingRoadInfo.get(i).get(2));
         	
-        	network.addEdge(one, two, length);
+        	graph.addEdge(one, two, length);
         	pointsPair.clear();
         }
         
@@ -47,12 +58,12 @@ public class DemoGraph {
 //        		System.out.println(oldBeijingIntersections.get(i).getNeighbor(j));       		
 //        }     
 //        System.out.println();
-        
+//        
         
         //compute shortest path
         DijkstraAlgorithm.computePaths(oldBeijingIntersections.get(0));
-        System.out.println("Distance to " + 5 + " : " + oldBeijingIntersections.get(5).minDistance);
-        List<Vertex> path = DijkstraAlgorithm.getShortestPathTo(oldBeijingIntersections.get(506));
+        System.out.println("Distance to " + 2000 + " : " + oldBeijingIntersections.get(5).minDistance);
+        List<Vertex> path = DijkstraAlgorithm.getShortestPathTo(oldBeijingIntersections.get(2000));
         System.out.println("Path:" + path);
         for(int i = 0; i<= path.size()-1;i++){
         	String latString = null;

@@ -1,3 +1,5 @@
+package map.graph;
+
 /**
  * This class models an undirected Edge in the Graph implementation.
  * An Edge contains two vertices and a weight. If no weight is
