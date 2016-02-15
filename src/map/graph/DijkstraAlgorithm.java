@@ -3,12 +3,20 @@ import java.util.PriorityQueue;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
-
+/**
+ * this class models a DijkstraAlgorithm to test the graph
+ * @author s4366844 Kewei Zhang
+ *
+ */
 public class DijkstraAlgorithm
 {
+	/**
+	 * the computePaths() method calculate all shortest paths form the source vertex to all reachable nodes in the graph
+	 * @param source the start vertex that user want to calculate the path length from
+	 */
     public static void computePaths(Vertex source)
     {
-        source.minDistance = 0.;
+        source.minDistance = 0;
         PriorityQueue<Vertex> vertexQueue = new PriorityQueue<Vertex>();
         vertexQueue.add(source);
 
@@ -32,7 +40,10 @@ public class DijkstraAlgorithm
             }
         }
     }
-    
+    /**
+     * @param target the target vertex that user want to caluculate the path length to
+     * @return a list of pathway vertexes
+     */
 
     public static List<Vertex> getShortestPathTo(Vertex target)
     {

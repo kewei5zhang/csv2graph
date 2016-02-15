@@ -9,6 +9,7 @@ import java.util.ArrayList;
  * is described by the Edges incident to it. 
  * 
  * @author Michael Levet
+ * @author s4366844 Kewei Zhang
  * @date June 09, 2015
  */
 public class Vertex implements Comparable<Vertex>{
@@ -17,8 +18,10 @@ public class Vertex implements Comparable<Vertex>{
     protected String label;
     public double minDistance = Double.POSITIVE_INFINITY;
     public Vertex previous;
-
+    private String latitude;
+    private String longitude;
     
+ 
     /**
      * 
      * @param label The unique label associated with this Vertex
@@ -43,6 +46,24 @@ public class Vertex implements Comparable<Vertex>{
 		this.label = label;
 	}
 
+	public String getLatitude() {
+		return latitude;
+	}
+
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
 
 	/**
      * This method adds an Edge to the incidence neighborhood of this graph iff
@@ -156,7 +177,6 @@ public class Vertex implements Comparable<Vertex>{
 	@Override
 	public int compareTo(Vertex other) {
 		return Double.compare(minDistance, other.minDistance);
-	}
-    
+	}   
 }
 

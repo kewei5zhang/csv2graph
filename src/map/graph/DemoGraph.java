@@ -8,72 +8,17 @@ import java.util.*;
  *
  */
 public class DemoGraph {
-    public static void main(String[] args){
-    	Graph graph = new Graph();
+    public static void main(String[] args) throws Exception{
     	
-    	ArrayList<Intersection> oldBeijingIntersections = null;
-    	ArrayList<ArrayList<String>> oldBeijingRoadInfo = null;
+    	BuildGraph bdGraph = new BuildGraph();
+    	bdGraph.addVertexes();;
+    	bdGraph.addEdges();
+    	bdGraph.printGraph(); 
     	
-    	ArrayList<Integer> pointsPair = new ArrayList<>();
-        sampleFile sampleFile = new sampleFile();
-        fileReader CsvFileReader = new fileReader();
-        
-        sampleFile.sampleCsvFile("beijingNode.txt", 2000, "sampleBeijingNode.txt");
-        sampleFile.sampleCsvFile("beijingRoad.txt", 100, "sampleBeijingRoad.txt");
-        
-        CsvFileReader.readNodeCsv("beijingNode.txt");
-        CsvFileReader.readRoadCsv("beijingRoad.txt");
-        oldBeijingIntersections =CsvFileReader.nodeCollection;
-        oldBeijingRoadInfo = CsvFileReader.roadInfo;
-        
-
-        //read all nodes in the text file and add those into the network as an intersection
-        for( int i = 0; i <= oldBeijingIntersections.size() - 1; i++){
-        	graph.addVertex(oldBeijingIntersections.get(i), true);
-        }
-        
-        for(int i = 0; i <= oldBeijingRoadInfo.size()-1; i++){
-	    	System.out.println(oldBeijingRoadInfo.get(i));
-	    }
-        
-        // add road in network
-        for(int i = 0; i <= oldBeijingRoadInfo.size()-1; i++){
-        	for(int j = 0; j <= 1;j++){       		
-        		int k = Integer.parseInt(oldBeijingRoadInfo.get(i).get(j)) ;
-        		pointsPair.add(k);
-        	}
-        	
-        	Intersection one =oldBeijingIntersections.get(pointsPair.get(0));
-        	Intersection two = oldBeijingIntersections.get(pointsPair.get(1));
-        	Double length = Double.parseDouble(oldBeijingRoadInfo.get(i).get(2));
-        	
-        	graph.addEdge(one, two, length);
-        	pointsPair.clear();
-        }
-        
-//        for(int i = 0; i <= oldBeijingIntersections.size()-1; i++){
-//        	System.out.println(oldBeijingIntersections.get(i));
-//        	
-//        	for(int j = 0; j< oldBeijingIntersections.get(i).getNeighborCount(); j++)
-//        		System.out.println(oldBeijingIntersections.get(i).getNeighbor(j));       		
-//        }     
-//        System.out.println();
-//        
-        
-        //compute shortest path
-        DijkstraAlgorithm.computePaths(oldBeijingIntersections.get(0));
-        System.out.println("Distance to " + 2000 + " : " + oldBeijingIntersections.get(5).minDistance);
-        List<Vertex> path = DijkstraAlgorithm.getShortestPathTo(oldBeijingIntersections.get(2000));
+        DijkstraAlgorithm.computePaths(bdGraph.getOldBeijingIntersections().get(0));
+        System.out.println("Distance from " + 0 + " to " + 2000 + " : " + bdGraph.getOldBeijingIntersections().get(2000).minDistance);
+        List<Vertex> path = DijkstraAlgorithm.getShortestPathTo(bdGraph.getOldBeijingIntersections().get(2000));
         System.out.println("Path:" + path);
-        for(int i = 0; i<= path.size()-1;i++){
-        	String latString = null;
-        	String lngString = null;
-        	latString = oldBeijingIntersections.get(Integer.parseInt(path.get(i).getLabel())).getLatitude();
-        	lngString = oldBeijingIntersections.get(Integer.parseInt(path.get(i).getLabel())).getLongitude();
-        	System.out.println(path.get(i) + " : " +latString +" , "+ lngString);
-        	
-        }
-        
     }
     
 }

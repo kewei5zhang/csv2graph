@@ -1,6 +1,7 @@
 package map.graph;
 import java.util.*;
 
+
 /**
  * This class models a simple, undirected graph using an 
  * incidence list representation. Vertices are identified 
@@ -11,6 +12,7 @@ import java.util.*;
  * should not attempt to manually add Edges yourself.
  * 
  * @author Michael Levet
+ * @author s4366844 Kewei Zhang
  * @date June 09, 2015
  */
 public class Graph {
@@ -52,7 +54,33 @@ public class Graph {
     public boolean addEdge(Vertex one, Vertex two){
         return addEdge(one, two, 1);
     }
-    
+    /**
+     * This method adds an existing edge, which contains vertex one, two and weight.
+     * @param e
+     * @return true if no edge relating to one and two exists in the Graph
+     */
+  
+    public boolean addEdge(Edge e){
+    	 if(e.getOne().equals(e.getTwo())){
+             return false;   
+         }
+        
+         //ensures the Edge is not in the Graph
+         
+         if(edges.containsKey(e.hashCode())){
+             return false;
+         }
+        
+         //and that the Edge isn't already incident to one of the vertices
+         else if(e.getOne().containsNeighbor(e) || e.getTwo().containsNeighbor(e)){
+             return false;
+         }
+             
+         edges.put(e.hashCode(), e);
+         e.getOne().addNeighbor(e);
+         e.getTwo().addNeighbor(e);
+         return true;
+    }
     
     /**
      * Accepts two vertices and a weight, and adds the edge 

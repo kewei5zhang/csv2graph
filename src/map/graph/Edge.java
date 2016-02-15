@@ -1,5 +1,7 @@
 package map.graph;
 
+import java.util.ArrayList;
+
 /**
  * This class models an undirected Edge in the Graph implementation.
  * An Edge contains two vertices and a weight. If no weight is
@@ -14,14 +16,16 @@ package map.graph;
  * checking uniqueness of edges, as well as the fact that two edges of equal weight
  * should be considered equitably in a pathfinding or spanning tree algorithm.
  * 
+ * linkList store all latitude and longitude pairs that form the specific edge
  * @author Michael Levet
+ * @author s4366844 Kewei Zhang
  * @date June 09, 2015
  */
 public class Edge implements Comparable<Edge> {
 
     protected Vertex one, two;
     protected double weight;
-  
+    private ArrayList<String> linkList;
     
 	/**
      * 
@@ -91,7 +95,20 @@ public class Edge implements Comparable<Edge> {
     public void setWeight(double weight){
         this.weight = weight;
     }
-
+    /**
+     * 
+     * @return linkList
+     */
+	public ArrayList<String> getLinkList() {
+		return linkList;
+	}
+	/**
+	 * 
+	 * @param linkList
+	 */
+	public void setLinkList(ArrayList<String> linkList) {
+		this.linkList = linkList;
+	}   
     
     /**
      * Note that the compareTo() method deviates from 
@@ -136,5 +153,6 @@ public class Edge implements Comparable<Edge> {
         Edge e = (Edge)other;
         
         return e.one.equals(this.one) && e.two.equals(this.two);
-    }   
+    }
+ 
 }
